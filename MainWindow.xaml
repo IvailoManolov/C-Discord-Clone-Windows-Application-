@@ -1,0 +1,298 @@
+﻿<Window x:Class="Client.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Client"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        Title="Connect" Height="900" Width="450"
+        TextElement.Foreground ="{DynamicResource MaterialDesignBody}"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        >
+
+    <materialDesign:Card
+        UniformCornerRadius="25"
+        Background="{DynamicResource MaterialDesignCardBackground}"
+        Margin="25"
+        materialDesign:ShadowAssist.ShadowDepth="Depth4"
+        >
+
+        <materialDesign:DialogHost
+                CloseOnClickAway="True"
+                x:Name="DialogHost"
+                >
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition
+                        Height="710"/>
+                    <RowDefinition/>
+                    <RowDefinition
+                        Height="90"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0">
+                    <materialDesign:PopupBox
+                    HorizontalAlignment="Right"
+                    Margin="0 20 20 0"
+                    PlacementMode="BottomAndAlignRightEdges"
+                    StaysOpen="True"
+                    Height="25">
+                        <StackPanel>
+                            <StackPanel
+                        Margin="26 20 0 16"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                                <StackPanel.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform/>
+                                        <SkewTransform/>
+                                        <RotateTransform/>
+                                        <TranslateTransform Y="-20"/>
+                                    </TransformGroup>
+                                </StackPanel.RenderTransform>
+
+                                <TextBlock
+                            VerticalAlignment="Center"
+                            Text="Dark Mode" RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="0"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+
+                                <TextBlock
+                            VerticalAlignment="Center"
+                            Margin="0 5 5 0"
+                            Text="Performance Optimization" RenderTransformOrigin="0.5,0.5">
+                                    <TextBlock.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="30" X="-59"/>
+                                        </TransformGroup>
+                                    </TextBlock.RenderTransform>
+                                </TextBlock>
+
+
+                                <ToggleButton Cursor="Hand" 
+                                      ToolTip="Enable Dark Mode"
+                                      Margin="12 0 8 0"
+                                      x:Name="themeToggle"
+                                      IsChecked="{Binding IsDarkTheme}" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right"
+                                      Click="toggleTheme">
+                                    <ToggleButton.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform X="42"/>
+                                        </TransformGroup>
+                                    </ToggleButton.RenderTransform>
+                                </ToggleButton>
+
+                                <ToggleButton Cursor="Hand" 
+                                      ToolTip="Enable Optimization"
+                                      Margin="12 0 8 0"
+                                      x:Name="optimizationToggle"
+                                      IsChecked="{Binding IsDarkTheme}" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Right">
+
+                                    <ToggleButton.RenderTransform>
+                                        <TransformGroup>
+                                            <ScaleTransform/>
+                                            <SkewTransform/>
+                                            <RotateTransform/>
+                                            <TranslateTransform Y="35" X="-13.5"/>
+                                        </TransformGroup>
+                                    </ToggleButton.RenderTransform>
+                                </ToggleButton>
+
+                                <StackPanel>
+
+                                    <Button x:Name="btn_exit" ToolTip="Close Application"
+                                Content="Exit Application"
+                                Margin="0"
+                                    VerticalAlignment="Bottom"
+                                    Click="exitApp"
+                                    Foreground="OrangeRed"
+                                    HorizontalAlignment="Left"
+                                    FontWeight="Bold"
+                                    Background="Red"
+                                    FontSize="15">
+                                    </Button>
+
+                                </StackPanel>
+
+
+
+
+                            </StackPanel>
+                            <Label Content="Choose a device!"
+                                   FontSize="15"
+                                   Background="DarkOrange" 
+                                    FontWeight="Bold">
+
+                            </Label>
+                            <StackPanel>
+                                <TextBlock FontSize="15"
+                           Margin="25,15,0,10"
+                           FontWeight="Bold"
+                           Text="Playback Device " 
+                               VerticalAlignment="Bottom" 
+                               HorizontalAlignment="Left"
+                               />
+                                <!--MaterialDesignChoiceChipPrimaryOutlineListBoxItem-->
+                                <ComboBox Name="PlaybackDeviceCombo"
+                                          Margin="50,0,10,0"
+                                          SelectionChanged="PlaybackDevice_Chosen"
+                                          ItemContainerStyle="{DynamicResource MaterialDesignFilterChipAccentOutlineListBoxItem}">
+
+                                </ComboBox>
+
+                            </StackPanel>
+                            <StackPanel>
+                                <TextBlock FontSize="15"
+                           Margin="25,15,0,10"
+                           FontWeight="Bold"
+                           Text="Recording Device " 
+                               VerticalAlignment="Bottom" 
+                               HorizontalAlignment="Left"
+                               />
+                                <ComboBox Name ="RecordingDeviceCombo"
+                                          Margin="50,0,10,0"
+                                          SelectionChanged="RecordingDevice_Chosen"
+                                          ItemContainerStyle="{DynamicResource MaterialDesignFilterChipAccentOutlineListBoxItem}">
+
+                                </ComboBox>
+                            </StackPanel>
+                        </StackPanel>
+
+                    </materialDesign:PopupBox>
+                    <Image Margin="0,10,0,5" Source="./Logo/Logo.png" Height="268"/>
+
+                    <TextBlock Margin="57,0,57,0"
+                           FontSize="40"
+                           FontWeight="Bold"
+                           Text="Welcome!" Height="69" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+
+                    <TextBlock FontSize="17"
+                           FontWeight="SemiBold"
+                           HorizontalAlignment="Center"
+                           Text="Join a chat server"/>
+
+                    <TextBox Margin="0 20 0 0"
+                         x:Name="txtSocket"
+                         Width="300"
+                         FontSize="18"
+                         materialDesign:HintAssist.Hint="Enter an IP:Port"
+                         BorderThickness="2"
+                         BorderBrush="{DynamicResource MaterialDesignDivider}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"/>
+
+
+                    <TextBox Margin="0 30 0 0"
+                         x:Name="txtPassword"
+                         Width="300"
+                         FontSize="18"
+                         materialDesign:HintAssist.Hint="Enter an Username"
+                         BorderThickness="2"
+                         BorderBrush="{DynamicResource MaterialDesignDivider}"
+                         Style="{StaticResource MaterialDesignOutlinedTextBox}"
+                         />
+
+                    <ProgressBar Width="300" Height="10" Minimum="0" Maximum="100" 
+                             Margin="0 10 0 0"
+                             Background="Black" 
+                             Opacity="0.7" 
+                             SmallChange="0"
+                             FontSize="10"
+                             HorizontalAlignment="Center"
+                             VerticalAlignment="Center"
+                             Foreground="Green"
+                             Value="{Binding WorkerState}">
+                        <ProgressBar.Effect>
+                            <BlurEffect RenderingBias="Quality"/>
+                        </ProgressBar.Effect>
+                    </ProgressBar>
+
+                    <Button Margin="0 40 0 0"
+                        x:Name="signupBtn"
+                        Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                        materialDesign:ShadowAssist.ShadowDepth="Depth0"
+                        Height="53"
+                        Width="300"
+                        materialDesign:ButtonAssist.CornerRadius="10"
+                        FontSize="18"
+                        Content="Connect" Click="connectBtn_Click"
+                        />
+
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="1">
+                    <TextBlock Margin="164,0"
+                           FontSize="20"
+                           FontWeight="Bold"
+                           Text="Devices" Height="26" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="2" Orientation="Vertical" >
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="15"
+                           Margin="25,10,0,5"
+                           FontWeight="Bold"
+                           Text="Playback Device " 
+                               VerticalAlignment="Top" HorizontalAlignment="Left" 
+                               />
+
+                        <Image Width="20"
+                               Height="20"
+                               ToolTip="{Binding PlaybackDevice_Tooltip}"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               Margin="210,0,5,0"
+                               Source="{Binding PlaybackDevice_Icon}"
+                               />
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock FontSize="15"
+                           Margin="25,25,0,5"
+                           FontWeight="Bold"
+                           Text="Recording Device " VerticalAlignment="Bottom"
+                               />
+                        <Image Width="20"
+                               Height="20"
+                               ToolTip="{Binding RecordingDevice_Tooltip}"
+                               RenderOptions.BitmapScalingMode="Fant"
+                               Margin="200,0,5,0"
+                               Source="{Binding RecordingDevice_Icon}"
+                               />
+                    </StackPanel>
+
+                </StackPanel>
+
+            </Grid>
+
+        </materialDesign:DialogHost>
+
+
+    </materialDesign:Card>
+
+
+</Window>
