@@ -1,0 +1,6 @@
+G:\AmazingChatV2Server\ChatServer\bin\Debug\ChatServer.exe.config
+G:\AmazingChatV2Server\ChatServer\bin\Debug\ChatServer.exe
+G:\AmazingChatV2Server\ChatServer\bin\Debug\ChatServer.pdb
+G:\AmazingChatV2Server\ChatServer\obj\Debug\ChatServer.exe
+G:\AmazingChatV2Server\ChatServer\obj\Debug\ChatServer.pdb
+G:\AmazingChatV2Server\ChatServer\obj\Debug\ChatServer.csprojAssemblyReference.cache
